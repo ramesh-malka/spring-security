@@ -15,15 +15,15 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class MyCustomSecurityConfig {
 
-    @Bean
-    UserDetailsService userDetailsService(){
-        InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
-        UserDetails user = User.withUsername("tom")
-                .password(passwordEncoder().encode("cruise"))
-                .authorities("read").build();
-        userDetailsService.createUser(user);
-        return userDetailsService;
-    }
+//    @Bean
+//    UserDetailsService userDetailsService(){
+//        InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
+//        UserDetails user = User.withUsername("tom")
+//                .password(passwordEncoder().encode("cruise"))
+//                .authorities("read").build();
+//        userDetailsService.createUser(user);
+//        return userDetailsService;
+//    }
 
     @Bean
     BCryptPasswordEncoder passwordEncoder(){
