@@ -13,8 +13,7 @@ public class MyCustomSecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.httpBasic();
-        httpSecurity.authorizeHttpRequests().requestMatchers("/hello").authenticated();
-        httpSecurity.addFilterBefore(new MySecurityFilter(), BasicAuthenticationFilter.class);
+        httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
         return httpSecurity.build();
     }
 
