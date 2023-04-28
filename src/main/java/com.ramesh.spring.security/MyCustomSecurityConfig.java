@@ -33,7 +33,8 @@ public class MyCustomSecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.formLogin();
-        httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
+        httpSecurity.authorizeHttpRequests().antMatchers("/hello").authenticated()
+                .anyRequest().denyAll();
         return httpSecurity.build();
     }
 
