@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
 import org.springframework.stereotype.Component;
 
 @Configuration
@@ -32,9 +33,11 @@ public class MyCustomSecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.formLogin();
-        httpSecurity.authorizeHttpRequests().antMatchers("/hello").authenticated()
-                .anyRequest().denyAll();
+        httpSecurity.httpBasic();
+
+        httpSecurity.authorizeHttpRequests().antMatchers("/hello").authenticated();
+        httpSecurity.addFilterBefore(new MySecurityFilter(), BasicAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 
